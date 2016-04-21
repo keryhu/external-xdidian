@@ -18,40 +18,103 @@ function:  two class
 
 
 	<groupId>com.xdidian</groupId>
-	<artifactId>xdidian</artifactId>
-	<version>0.0.1</version>
+	<artifactId>xdidian-share</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	
 如果其他maven需求加入此jar:
 
-先终端 cd 到此项目根目录，执行
+第一步在此jar的pom.xml中增加：
 
-> mvn clean install
+	<distributionManagement>
+	    <repository>
+	        <id>internal.repo</id>
+	        <name>Temporary Staging Repository</name>
+	        <url>file://${project.build.directory}/mvn-repo</url>
+	    </repository>
+	</distributionManagement>
+	
+	<plugins>
+	    <plugin>
+	        <artifactId>maven-deploy-plugin</artifactId>
+	        <version>2.8.2</version>
+	        <configuration>
+	            <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+	        </configuration>
+	    </plugin>
+	</plugins>
 
-接着在新建 groupId/artifactId/version/的目录，将
-artifactId-version.jar和artifactId-version-source.jar放入此目录下。
 
-第三步： 在github上新建一个地址 external-jar,然后将上面的存放jar的目录上传到此目录，（就可以访问[https://github.com/keryhu/external-jar/tree/master/]()查看到被传入的jar
+第二步： 设置brew 安装的 maven 的setting..xml文件，github帐号，密码
 
-再：需要被加入的maven项目的pom中加入两端代码。（注意与上面jar的设置一致）
+文件地址是： /usr/local/Cellar/maven/3.3.9/libexec/conf/settings.xml
 
-	<!-- 此处增加的是自定义的jar Begin！！ -->
-		<dependency>
-			<groupId>com.xdidian</groupId>
-	        <artifactId>xdidian</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<!-- 此处增加的是自定义的jar End！！ -->
+	<settings>
+	  <servers>
+	    <server>
+	      <id>github</id>
+	      <username>YOUR-USERNAME</username>
+	      <password>YOUR-PASSWORD</password>
+	    </server>
+	  </servers>
+	</settings>
 
-			
-			
-和：（注意url地址）
+此pom.xml 中增加：
 
-    <!-- 此处增加的是自定义的jar Begin！！ -->
-		<repository>
-			<id>project-common</id>
-			<name>Project Common</name>
-			<url>https://github.com/keryhu/external-jar/tree/master/</url>
-		</repository>
-		<!-- 此处增加的是自定义的jar End！！ -->
+	<properties>
+	  <github.global.server>github</github.global.server>
+	</properties>
+
+再增加：
+
+	<build>
+	    <plugins>
+	        <plugin>
+	            <groupId>com.github.github</groupId>
+	            <artifactId>site-maven-plugin</artifactId>
+	            <version>0.12</version>
+	            <configuration>
+	                <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+	                <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+	                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+	                <branch>refs/heads/mvn-repo</branch>                       <!-- remote branch name -->
+	                <includes><include>**/*</include></includes>
+	                <repositoryName>YOUR-REPOSITORY-NAME</repositoryName>      <!-- github repo name -->
+	                <repositoryOwner>YOUR-GITHUB-USERNAME</repositoryOwner>    <!-- github username  -->
+	            </configuration>
+	            <executions>
+	              <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+	              <execution>
+	                <goals>
+	                  <goal>site</goal>
+	                </goals>
+	                <phase>deploy</phase>
+	              </execution>
+	            </executions>
+	        </plugin>
+	    </plugins>
+	</build>
+
+运行语句
+
+> mvn clean deploy 将上传文件到github
+
+
+
+最好在需要加载此依赖的jar的pom.xml文件中加上－－本jar 的
+
+	<groupId>com.xdidian</groupId>
+		<artifactId>xdidian-share</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	
+和：
+
+	<repository>
+				<id>external-xdidian</id>
+				<url>https://raw.github.com/keryhu/external-xdidian/mvn-repo/</url>
+				<snapshots>
+					<enabled>true</enabled>
+					<updatePolicy>always</updatePolicy>
+				</snapshots>
+			</repository>
 
 
