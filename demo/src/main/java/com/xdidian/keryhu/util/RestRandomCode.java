@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 * @date 2016年5月3日 下午2:39:52
  */
 
-public class RestRandomCode  {
+public final class RestRandomCode  {
+	
+	private RestRandomCode(){}
 	
 	private static final Logger logger=LoggerFactory.getLogger(RestRandomCode.class);
 	
