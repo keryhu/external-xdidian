@@ -1,7 +1,6 @@
 package com.xdidian.keryhu.util;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -38,5 +37,8 @@ public class RestRandomCode  {
 		
 	}
 	
-
+	public static boolean containCode(String random){
+		return Arrays.asList(code).contains(random);
+	}
+	
 }
