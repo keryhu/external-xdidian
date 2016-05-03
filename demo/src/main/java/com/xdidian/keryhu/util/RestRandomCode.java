@@ -1,6 +1,6 @@
 package com.xdidian.keryhu.util;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import org.slf4j.Logger;
@@ -22,18 +22,16 @@ public final class RestRandomCode  {
 	
 	private static final Logger logger=LoggerFactory.getLogger(RestRandomCode.class);
 		
-	private static final List<String> code=new ArrayList<String>();
-	
-	/**
-	 * 初始化40个由12个字符串组成的数组。
-	 */
-    static {
-    	for (int i=0;i<40;i++){
-    		code.add(generateRandom(12));
-    	}
-		
-	}
-	
+	private static final List<String> code=Arrays.asList("8bJUz:hKh>Ng","Ylb(]VccGRw@",
+			"IhN5rKT3*BfV","GZ?[0hivPkGu","9ofWSe9v}9*N","UdjJDW$@WECT","w7wJD0q7VhNQ",
+			"$dZeW#)qxI3C","$CvGxJrOF$KA","^CB1jS7{A9@i","HF@YT4C]H{[6","xl{9?JdOVJkX",
+			"Nru0VL3e?]Xz","i8G:Zxg@)NFY","HJRx$#yQaayu","J)#c$qv{rOD@","8&yM:?vg(Gp9",
+			"MP#GyD%kP}iv","ou0G0&SoRmyY","&o^Q{due6QFz","l2EAb4ajofwf","Z4(P#Liq#D^^",
+			"I5n?PFCjyo70","t0SBae{0$Uw{","5CLTJ{:@a%Uw","ZHP%fdKgO4>^","{jqXOGJg)5HQ",
+			"?:fOLF[{9Dyu","zwbN[ypzFTLF",">qMs5okEsMwg","CfMDrm(LsU1q","qgb*HRjKL1]9",
+			"el@GiU*H}B}l","qsYYeo@FByM<","IDPhlDtu0IeE","{*6V#NU}3cG[","xy]Hgcm1?StU",
+			"UtSd4WepVp5E","VJ@DkeOItn:$","bD>NYrtj(tPr");
+
 	
     /**
      * 
@@ -64,24 +62,5 @@ public final class RestRandomCode  {
 		return code.contains(random);
 	}
 	
-	/**
-	 * 
-	* @Title: generateRandom
-	* @Description: TODO(生成固定长度的随机字符串)
-	* @param @param length
-	* @param @return    设定文件
-	* @return String    返回类型
-	* @throws
-	 */
-	public static String generateRandom(int length){
-		StringBuffer buffer = new StringBuffer("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<>?:{}[]#$@%^&*()"); 
-		StringBuffer sb = new StringBuffer();   
-        Random random = new Random();   
-        int range = buffer.length();   
-        for (int i = 0; i < length; i ++) {   
-            sb.append(buffer.charAt(random.nextInt(range)));   
-        }   
-        return sb.toString();   
-	}
 	
 }
