@@ -13,7 +13,6 @@ public  final class Constants {
 		//不允许实例化
 	}
 	
-	public static final boolean LOGIN_SUCCESS=true;   //表示登录成功的信号
 	
 	public static final String  READ_AND_WRITE_RESOURCE_ID="ReadAndWriteResource";   //可读写的resourceID
 	
