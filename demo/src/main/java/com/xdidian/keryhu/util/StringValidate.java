@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.xdidian.keryhu.domain.StringType;
+
 /**
 * @ClassName: StringValidate
 * @Description: TODO(对于系统中的String，基于表达式的判断，判断其符合某种标准，如password，email等)
@@ -11,7 +13,7 @@ import java.util.regex.Pattern;
 * @date 2016年3月15日 下午3:28:38
 *
  */
-public class StringValidate {
+public final class StringValidate {
 	//防止其他用户调用其私有对象
 	private StringValidate(){}
 	
@@ -21,7 +23,7 @@ public class StringValidate {
 	 * @param email
 	 * @return 如果是email，则返回true
 	 */
-	public static boolean IsEmail (String email){
+	public static boolean isEmail (String email){
 		
 	return	Optional.ofNullable(email).map(e->{
 			String username = "^\\w[-.\\w]*\\@"; // 邮箱的用户名部分和@
@@ -43,7 +45,7 @@ public class StringValidate {
 	 * @param phone
 	 * @return 如果是phone，则返回true
 	 */
-	public static boolean IsPhone (String phone){
+	public static boolean isPhone (String phone){
 		
 		return Optional.ofNullable(phone).map(e->{		
 			//目前的手机号均为13，14，15，17，18开头的11位数字
@@ -62,7 +64,7 @@ public class StringValidate {
 	 * @param password
 	 * @return 如果是password，则返回true
 	 */
-	public static boolean IsPassword (String password){
+	public static boolean isPassword (String password){
 		return Optional.ofNullable(password).map(e->{		
 			// 表达式的意思是：6-20位字符组成，必须包含数字，字母，特殊字符，2种以上随意组合，特殊字符为-`=;',.~!@#$%^&*()_+\{}:<>?
 						// (?=.*\\d)表示包含数字
@@ -84,7 +86,7 @@ public class StringValidate {
 	 * @param companyName
 	 * @return 如果是companyName，则返回true
 	 */
-	public static boolean IsCompanyName (String companyName){
+	public static boolean isCompanyName (String companyName){
 	return	Optional.ofNullable(companyName).map(e->{
 			String regex="^([\\u4e00-\\u9fa5\\(\\)（）]{2,20}|[a-zA-Z\\.\\s\\(\\)]{2,20})$";
 			Pattern p=Pattern.compile(regex);
@@ -100,7 +102,7 @@ public class StringValidate {
 	 * @param peopleName
 	 * @return 如果是peopleName，则返回true
 	 */
-	public static boolean IsPeopleName (String peopleName){
+	public static boolean isPeopleName (String peopleName){
 		return Optional.ofNullable(peopleName).map(e->{
 			String regex="^([\\u4e00-\\u9fa5]{2,20}|[a-zA-Z\\.\\s]{2,20})$";
 			Pattern p=Pattern.compile(regex);
@@ -116,7 +118,7 @@ public class StringValidate {
 	 * @param uuid
 	 * @return 如果是uuid，则返回true
 	 */
-	public static boolean IsUuid (String uuid){
+	public static boolean isUuid (String uuid){
 		return Optional.ofNullable(uuid).map(e->{
 			String regex="^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$";
 			Pattern p=Pattern.compile(regex);
@@ -124,6 +126,35 @@ public class StringValidate {
 			return m.matches();  //m.matches() 表示是否匹配，返回boolean
 			//如果e是null，那么直接返回false
 					}).orElse(false);
+	}
+	
+	
+	/**
+	 * 
+	* @Title: checkType
+	* @Description: TODO(检测字符串是属于StringType的哪种类型，如果都不是，就返回null)
+	* @param @param s
+	* @param @return    设定文件
+	* @return StringType    返回类型
+	* @throws
+	 */
+	public static StringType checkType(String s){
+		
+		if(isEmail(s)){
+			return StringType.EMAIL;
+		} else if(isPhone(s)){
+			return StringType.PHONE;
+		} else if (isPassword(s)){
+			return StringType.PASSWORD;
+		} else if(isCompanyName(s)){
+			return StringType.COMPANY_NAME;
+		} else if(isPeopleName(s)){
+			return StringType.PEOPLE_NAME;
+		} else if(isUuid(s)){
+			return StringType.UUID;
+		}
+		
+		return null;
 	}
 		
 }
