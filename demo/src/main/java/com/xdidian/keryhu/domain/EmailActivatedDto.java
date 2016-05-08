@@ -31,12 +31,12 @@ public class EmailActivatedDto implements Serializable {
 	@DateTimeFormat(iso=ISO.DATE_TIME)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime registerTime;   //用户注册时间
+	private LocalDateTime deadlineOfEmailActivated;   //用户email激活的截止时间
 	
 	public EmailActivatedDto(){
 		this.email=null;
 		this.emailActivatedCode=null;
-		this.registerTime=null;
+		this.deadlineOfEmailActivated=null;
 		
 		
 	}
