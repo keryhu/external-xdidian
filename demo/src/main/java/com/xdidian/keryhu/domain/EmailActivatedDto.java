@@ -1,6 +1,15 @@
 package com.xdidian.keryhu.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import lombok.Data;
 
@@ -19,9 +28,17 @@ public class EmailActivatedDto implements Serializable {
 	private String email;
 	private String emailActivatedCode;   //邮箱激活的验证码
 	
+	@DateTimeFormat(iso=ISO.DATE_TIME)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime registerTime;   //用户注册时间
+	
 	public EmailActivatedDto(){
 		this.email=null;
 		this.emailActivatedCode=null;
+		this.registerTime=null;
+		
+		
 	}
 	
 
