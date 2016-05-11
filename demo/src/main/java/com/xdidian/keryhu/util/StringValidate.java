@@ -140,17 +140,17 @@ public final class StringValidate {
 	 */
 	public static StringType checkType(String s){
 		
-		if(isEmail(s)){
+		if(StringValidate.isEmail(s)){
 			return StringType.EMAIL;
-		} else if(isPhone(s)){
+		} else if(StringValidate.isPhone(s)){
 			return StringType.PHONE;
-		} else if (isPassword(s)){
+		} else if (StringValidate.isPassword(s)){
 			return StringType.PASSWORD;
-		} else if(isCompanyName(s)){
+		} else if(StringValidate.isCompanyName(s)){
 			return StringType.COMPANY_NAME;
-		} else if(isPeopleName(s)){
+		} else if(StringValidate.isPeopleName(s)){
 			return StringType.PEOPLE_NAME;
-		} else if(isUuid(s)){
+		} else if(StringValidate.isUuid(s)){
 			return StringType.UUID;
 		}
 		
