@@ -2,7 +2,6 @@ package com.xdidian.keryhu.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -34,15 +33,5 @@ public class EmailActivatedDto implements Serializable {
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime expireDate;   //用户email激活的截止时间
 	
-	/**
-	 * 
-	* <p>Title: </p>
-	* <p>Description: 初始化的时候，设置token的值,并将email和过期时间，传递给Dto对象</p>
-	 */
-	public EmailActivatedDto(String email,LocalDateTime expireDate){
-		this.email=email;
-		this.token=UUID.randomUUID().toString();
-		this.expireDate=expireDate;
-			
-	}
+	
 }
