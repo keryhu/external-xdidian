@@ -154,7 +154,7 @@ public final class StringValidate {
 			return StringType.UUID;
 		}
 		
-		
+		   return StringType.ALLNOT;
 	}
 		
 }

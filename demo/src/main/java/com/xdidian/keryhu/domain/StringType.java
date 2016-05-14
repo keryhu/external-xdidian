@@ -21,13 +21,14 @@ public enum StringType {
 	PASSWORD,   //密码格式
 	COMPANY_NAME,  // 公司名字
 	PEOPLE_NAME,    // 人的姓名
-	UUID;           //uuid
+	UUID,           //uuid
+	ALLNOT;          //不是上面的所有类型
 	
 	/**
 	 * 为了能过实现Enum 对象 json 序列号和反序列化 进行的下列设置
 	 */
 	  
-	  private static Map<String,StringType> stringTypeMap=new HashMap<String,StringType>(6);
+	  private static Map<String,StringType> stringTypeMap=new HashMap<String,StringType>(7);
 	
 
 	  static {
@@ -37,6 +38,7 @@ public enum StringType {
 		  stringTypeMap.put("COMPANY_NAME", COMPANY_NAME);
 		  stringTypeMap.put("PEOPLE_NAME", PEOPLE_NAME);
 		  stringTypeMap.put("UUID", UUID);
+		  stringTypeMap.put("ALLNOT", ALLNOT);
 	  }
 	  
 	  @JsonCreator
