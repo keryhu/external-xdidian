@@ -30,7 +30,7 @@ public class EmailActivatedDto implements Serializable {
 	
 	private String resendToken;  // “重新发送激活邮件”Url中的token
 	
-	private String reregisterToken;  // “重新注册”Url中的token
+	private String resignupToken;  // “重新注册”Url中的token
 	
 	@DateTimeFormat(iso=ISO.DATE_TIME)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
