@@ -16,17 +16,19 @@ import lombok.Data;
 /**
  * 
 * @ClassName: EmailActivatedDto
-* @Description: TODO(用于邮箱激活，从注册后台发送message出去的dto包含了：email，token 和 过期时间，)
+* @Description: TODO(用于邮箱激活或手机激活，从注册后台发送message出去的dto包含了：
+*  id（email或phone），token 和 过期时间，)
 * @author keryhu  keryhu@hotmail.com
 * @date 2016年5月5日 下午7:34:55
  */
 @Data
-public class EmailActivatedDto implements Serializable {
+public class AccountActivatedDto implements Serializable {
  
 	private static final long serialVersionUID = -1178102023977336785L;
 	
-	private String email;
-	private String emailToken;   //邮箱激活的验证码
+	private String id;    //id 只能是email或phone格式，如果是email就是发送的email激活，否则是phone激活
+	
+	private String token;   //id对应的激活码
 	
 	private String resendToken;  // “重新发送激活邮件”Url中的token
 	
@@ -35,7 +37,7 @@ public class EmailActivatedDto implements Serializable {
 	@DateTimeFormat(iso=ISO.DATE_TIME)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime expireDate;   //用户email激活的截止时间
+	private LocalDateTime expireDate;   //id对应的激活的截止时间
 	
 	
 }
