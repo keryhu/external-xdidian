@@ -18,19 +18,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum Role {
 	  
 	
-	  ROLE_SERVICE,        //客服
-	  
+	  ROLE_DEFAULT,        //默认类型，值可以读写，自身的数据
 	 
-	  ROLE_ADMIN,          //admin
+	  ROLE_COMPANY_ADMIN,          // 客户公司的company admin 公司的管理员
 	  
-	 
-	  ROLE_PROPERTY,       //物业公司
-	  
-	  
-	  ROLE_TENANT,         // 租户
-	  
-	  
-	  ROLE_INTENTION    ;   //看房者，有意向租办公场地的人员
+	  ROLE_SOME_DEPARTMENT    ;   //公司的拥有读取某些部门数据的roles
 	
 	
 	/**
@@ -40,12 +32,10 @@ public enum Role {
 	  private static Map<String,Role> roleMap=new HashMap<String,Role>(5);
 	  
 	  static{
-		  roleMap.put("ROLE_SERVICE", ROLE_SERVICE);
-		  roleMap.put("ROLE_ADMIN", ROLE_ADMIN);
-		  roleMap.put("ROLE_PROPERTY", ROLE_PROPERTY);
-		  roleMap.put("ROLE_TENANT", ROLE_TENANT);
-		  roleMap.put("ROLE_INTENTION", ROLE_INTENTION);
-		  
+		  roleMap.put("ROLE_SERVICE", ROLE_DEFAULT);
+		  roleMap.put("ROLE_COMPANY_ADMIN", ROLE_COMPANY_ADMIN);
+		  roleMap.put("ROLE_SOME_DEPARTMENT", ROLE_SOME_DEPARTMENT);
+		   
 		  
 	  }
 	  
