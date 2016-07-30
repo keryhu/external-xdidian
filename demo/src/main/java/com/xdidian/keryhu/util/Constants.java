@@ -15,6 +15,9 @@ public  final class Constants {
 	
 	
 	public static final String  READ_AND_WRITE_RESOURCE_ID="ReadAndWriteResource";   //可读写的resourceID
+    
+    //如果email激活码过期，则前台需要返回注册页面
+    public static final String EMAIL_ACTIVATE_EXPIRED="emailActivateExpired";
 	
 
 }
