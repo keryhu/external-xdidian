@@ -20,6 +20,7 @@ public class SignupDto implements Serializable {
 	
 	private String email;
 	private String phone;
+	private String name;  //  员工姓名
 	private String password;
 	
 	
@@ -27,6 +28,7 @@ public class SignupDto implements Serializable {
 		// TODO Auto-generated constructor stub
 		this.email=null;
 		this.phone=null;
+		this.name=null;
 		this.password=null;
 		
 		
