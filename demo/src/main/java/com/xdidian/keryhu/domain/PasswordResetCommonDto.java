@@ -23,7 +23,6 @@ public class PasswordResetCommonDto implements Serializable{
 
 	private String account;          // 可以是email或phone的任何一种
 	private String passwordToken ;   // 验证重设密码url中的token
-	private String resendToken ;     //“重新发送邮件”url中的token
 	
 	@DateTimeFormat(iso=ISO.DATE_TIME)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
