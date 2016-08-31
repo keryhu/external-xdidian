@@ -36,7 +36,6 @@ public final class SecurityUtils {
 		if (e instanceof UserDetails) {
 			return ((UserDetails) e).getUsername();
 		} 
-		System.out.println("authentication is : "+e.toString());
 			return e.toString();
 		//如果为空，则返回null
 	}).orElse(null);
