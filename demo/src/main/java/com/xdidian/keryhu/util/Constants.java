@@ -21,5 +21,7 @@ public  final class Constants {
     //定义一个使用新地点平台role，排序
     public static final String ROLE_HIERARCHY="ROLE_XDIDIAN_ADMIN>ROLE_XDIDIAN_SERVICE ROLE_XDIDIAN_SERVICE>ROLE_COMPANY_ADMIN ROLE_COMPANY_ADMIN>ROLE_SOME_DEPARTMENT  ROLE_SOME_DEPARTMENT>ROLE_DEFAULT";
 	
+    //定义用户名字，修改的间隔时间，至少60天，也就是限制了用户不能随意的修改名字。
+    public static final int INTERVAL_DAYS_OF_NAME_MODIFICATION=60;
 
 }
