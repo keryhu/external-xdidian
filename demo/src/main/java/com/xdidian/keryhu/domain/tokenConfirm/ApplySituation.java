@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  *
  */
 
-public enum Type {
+public enum ApplySituation {
 	
 
 	  SIGNUP,        //	 注册
@@ -30,7 +30,7 @@ public enum Type {
 	 * 为了能过实现Enum role 对象 json 序列号和反序列化 进行的下列设置
 	 */
 	  
-	  private static Map<String,Type> typeMap=new HashMap<String,Type>(3);
+	  private static Map<String,ApplySituation> typeMap=new HashMap<String,ApplySituation>(3);
 	  
 	  static{
 		  typeMap.put("SIGNUP", SIGNUP);
@@ -40,13 +40,13 @@ public enum Type {
 	  }
 	  
 	  @JsonCreator
-	  public static Type forValue(String value){
+	  public static ApplySituation forValue(String value){
 		  return typeMap.get(value);
 	  }
 	  
 	  @JsonValue
 	  public String toValue(){
-		  for(Entry<String,Type> type: typeMap.entrySet()){
+		  for(Entry<String,ApplySituation> type: typeMap.entrySet()){
 			  if(type.getValue()==this)
 				  return type.getKey();
 		  }

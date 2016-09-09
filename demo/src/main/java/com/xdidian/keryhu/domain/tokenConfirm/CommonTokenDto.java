@@ -41,7 +41,7 @@ public class CommonTokenDto implements Serializable{
 	private String resignupToken; // 可选，当注册时候，才会出现这个。
 	
 	//哪种应用在调用此方法，，注册／密码重设，还是 个人资料修改
-	private Type type;
+	private ApplySituation applySituation;
 	
 	//可选，重设密码的时候，取得验证码的方法
 	private RecoverMethod recoverMethod;   
