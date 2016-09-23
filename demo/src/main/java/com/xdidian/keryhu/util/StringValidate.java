@@ -88,7 +88,7 @@ public final class StringValidate {
 	 */
 	public static boolean isCompanyName (String companyName){
 	return	Optional.ofNullable(companyName).map(e->{
-			String regex="^([\\u4e00-\\u9fa5\\(\\)（）]{2,20}|[a-zA-Z\\.\\s\\(\\)]{2,20})$";
+			String regex="^([-a-zA-Z\\u4e00-\\u9fa5\\(\\)（）_\\.\\s]{4,40})$";
 			Pattern p=Pattern.compile(regex);
 			Matcher m=p.matcher(e);	
 			return m.matches();  //m.matches() 表示是否匹配，返回boolean
