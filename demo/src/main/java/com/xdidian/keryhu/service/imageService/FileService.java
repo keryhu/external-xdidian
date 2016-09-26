@@ -1,11 +1,9 @@
 package com.xdidian.keryhu.service.imageService;
 
 
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
-@Component("fileService")
 public class FileService {
 	/**
 	 * 

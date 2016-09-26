@@ -9,8 +9,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,12 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2016年8月30日 下午9:42:42
  */
 
-@Component("imageScaledService")
 
 public class ImageScaledService {
 
-	@Autowired
-	private FileService fileService;
+	private FileService fileService=new FileService();
 
 	// 追求图像质量的设置方法。
 	public BufferedImage resize(BufferedImage image, int width, int height) {
