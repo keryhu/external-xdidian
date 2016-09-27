@@ -20,10 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2016年8月30日 下午9:42:42
  */
 
-
 public class ImageScaledService {
 
-	private FileService fileService=new FileService();
+	private FileService fileService = new FileService();
 
 	// 追求图像质量的设置方法。
 	public BufferedImage resize(BufferedImage image, int width, int height) {
@@ -42,12 +41,12 @@ public class ImageScaledService {
 
 	// resize 图片，到指定的 宽度和高度，并且保存图片到指定 文件位置。默认单个文件不能超过1Mb
 	public void resizeImageAndSave(MultipartFile file, int width, int height, long minResizeSize, 
-			String targetSavePath)
-			throws IOException {
+			long maxSize,String targetSavePath)throws IOException {
 
 		// 首先验证 上传来的文件是否是 image文件
 		Assert.isTrue(fileService.isImage(file), "上传的图片，必需是image格式");
-		Assert.isTrue(file.getSize() < 950 * 1024, "上传文件不能超过1Mb");
+		String m = "上传的文件不能超过 " + maxSize / 1024 + " kb";
+		Assert.isTrue(file.getSize() < maxSize, m);
 
 		BufferedImage inputImage = ImageIO.read(file.getInputStream());
 		;// resize后的图片
@@ -61,24 +60,24 @@ public class ImageScaledService {
 		if (file.getSize() >= minResizeSize && exceedDefaultPixel) {
 			newImage = resize(inputImage, width, height);
 		}
-		
-		//  save image
-		saveImage(newImage,targetSavePath);
+
+		// save image
+		saveImage(newImage, targetSavePath);
 
 	}
-	
 
-   /**
-    * 将图片文件保存到 指定的目的地。  目的地一般是这样的：  /a/bc/abc.png   就是abc.png 图片保存在  文件夹  /a/bc/ 下
-    * @param file
-    * @param destFile
-    * @throws IOException
-    */
-	
-	public void saveImage(BufferedImage file, String destFile) throws IOException{
-	    // TODO Auto-generated method stub
-	    // writes to output file
-	    ImageIO.write(file, "png", new File(destFile));
-	  }
+	/**
+	 * 将图片文件保存到 指定的目的地。 目的地一般是这样的： /a/bc/abc.png 就是abc.png 图片保存在 文件夹 /a/bc/ 下
+	 * 
+	 * @param file
+	 * @param destFile
+	 * @throws IOException
+	 */
+
+	public void saveImage(BufferedImage file, String destFile) throws IOException {
+		// TODO Auto-generated method stub
+		// writes to output file
+		ImageIO.write(file, "png", new File(destFile));
+	}
 
 }
