@@ -1,6 +1,13 @@
 package com.xdidian.keryhu.service.imageService;
 
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,5 +25,45 @@ public class FileService {
 		String type = file.getContentType().split("/")[0];
 		return type.equals("image");
 	}
+	
+	// 将filePaht 图片，转为png base64 string
+	public  byte[] filePathToPngByte(String path) {
+	    FileSystemResource resource = new FileSystemResource(path);
+	    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	    if (resource.exists()) {
+	      BufferedImage img = null;
+	      try {
+	        img = ImageIO.read(resource.getFile());
+	        ImageIO.write(img, "png", bos);       
+	        return bos.toByteArray();
+	      } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	      }
+	    }
+	    return null;
+	  }
+	
+	// 将filePaht 图片，转为 原来图片格式的 base64 string（即原来是 jpeg，转后还是jpeg，原来是png，转后还是png）
+		public  byte[] filePathToOriginalByte(String path) {
+		    FileSystemResource resource = new FileSystemResource(path);
+		    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		    int length=path.split("/").length;
+		    String fileName=path.split("/")[length-1];
+		    String type=fileName.split(".")[1];
+		    if (resource.exists()) {
+		      BufferedImage img = null;
+		      try {
+		        img = ImageIO.read(resource.getFile());
+		        ImageIO.write(img, type, bos);       
+		        return bos.toByteArray();
+		      } catch (IOException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		      }
+		    }
+		    return null;
+		  }
+		
 
 }
