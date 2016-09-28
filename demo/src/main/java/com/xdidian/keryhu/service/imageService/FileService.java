@@ -48,9 +48,8 @@ public class FileService {
 		public  byte[] filePathToOriginalByte(String path) {
 		    FileSystemResource resource = new FileSystemResource(path);
 		    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		   
-		    int index=path.indexOf(".");
-	        String type=path.substring(index+1,path.length());
+		  
+	        String type=getTypeFromImgPath(path);
 		   
 		    if (resource.exists()) {
 		      BufferedImage img = null;
@@ -66,5 +65,11 @@ public class FileService {
 		    return null;
 		  }
 		
+		
+		// 根据 img 保存的本地 路径 全名，获取 文件的格式。
+		public String getTypeFromImgPath(String path){
+			int index=path.indexOf(".");
+	        return path.substring(index+1,path.length());
+		}
 
 }
