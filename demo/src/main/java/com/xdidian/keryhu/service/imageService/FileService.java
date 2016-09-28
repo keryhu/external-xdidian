@@ -48,9 +48,10 @@ public class FileService {
 		public  byte[] filePathToOriginalByte(String path) {
 		    FileSystemResource resource = new FileSystemResource(path);
 		    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		    int length=path.split("/").length;
-		    String fileName=path.split("/")[length-1];
-		    String type=fileName.split(".")[1];
+		   
+		    int index=path.indexOf(".");
+	        String type=path.substring(index+1,path.length());
+		   
 		    if (resource.exists()) {
 		      BufferedImage img = null;
 		      try {
