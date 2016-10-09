@@ -2,6 +2,8 @@ package com.xdidian.keryhu.domain.company;
 
 import java.io.Serializable;
 
+import com.xdidian.keryhu.domain.CheckType;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,5 +33,6 @@ public class CheckCompanyDto implements Serializable{
 	private String email;
 	private String phone;
 	private String companyId;  //companyId
+	private CheckType checkType;  // 审核的结果 类型 
 
 }
