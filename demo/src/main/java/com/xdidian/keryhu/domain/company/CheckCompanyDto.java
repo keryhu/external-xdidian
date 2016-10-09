@@ -27,7 +27,9 @@ public class CheckCompanyDto implements Serializable{
 
 	private static final long serialVersionUID = -7239478614580211697L;
 	
-	private String account;    //email,phone or userId
+	private String userId;    //userId
+	private String email;
+	private String phone;
 	private String companyId;  //companyId
 
 }
