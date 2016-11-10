@@ -1,11 +1,6 @@
 package com.xdidian.keryhu.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * 
@@ -24,35 +19,4 @@ public enum StringType {
 	UUID,           //uuid
 	ALLNOT;          //不是上面的所有类型
 	
-	/**
-	 * 为了能过实现Enum 对象 json 序列号和反序列化 进行的下列设置
-	 */
-	  
-	  private static Map<String,StringType> stringTypeMap=new HashMap<String,StringType>(7);
-	
-
-	  static {
-		  stringTypeMap.put("EMAIL", EMAIL);
-		  stringTypeMap.put("PHONE", PHONE);
-		  stringTypeMap.put("PASSWORD", PASSWORD);
-		  stringTypeMap.put("COMPANY_NAME", COMPANY_NAME);
-		  stringTypeMap.put("PEOPLE_NAME", PEOPLE_NAME);
-		  stringTypeMap.put("UUID", UUID);
-		  stringTypeMap.put("ALLNOT", ALLNOT);
-	  }
-	  
-	  @JsonCreator
-	  public static StringType forValue(String value){
-		  return stringTypeMap.get(value);
-	  }
-	  
-	  @JsonValue
-	  public String toValue(){
-		  for(Entry<String,StringType> stringType: stringTypeMap.entrySet()){
-			  if(stringType.getValue()==this)
-				  return stringType.getKey();
-		  }
-		  return null;
-	  }
-	  
 }

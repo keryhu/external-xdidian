@@ -6,10 +6,7 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,8 +44,6 @@ public class CommonTokenDto implements Serializable{
 	private RecoverMethod recoverMethod;   
 	
 	@DateTimeFormat(iso=ISO.DATE_TIME)
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	private LocalDateTime expireDate;   //token有效期的截止时间
 	
 
