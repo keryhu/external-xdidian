@@ -25,7 +25,5 @@ public  final class Constants {
     public static final int INTERVAL_DAYS_OF_NAME_MODIFICATION=60;
     
 
-    //表示新的公司注册成功，发送消息出去的暗号。
-    public static final String NEW_COMPANY="NEW_COMPANY";
 
 }
