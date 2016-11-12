@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
+import com.xdidian.keryhu.domain.Role;
+
 /**
  * 获取当前用户，关于spring security 的一些操作
  * 
@@ -111,5 +113,16 @@ public final class SecurityUtils {
 	public static Collection<String> getAuthorities() {
         //用户的权限不可能为空，如果未登录，权限是：[ROLE_ANONYMOUS] 
 		return getAuthentication().getAuthorities().stream().map(e -> e.getAuthority()).collect(Collectors.toList());
+	}
+	
+	
+	/**
+	 * 
+	 * @return  当前用户是否是新地点的客服或者管理员
+	 */
+	
+	public static boolean isXdidian(){
+		return getAuthorities().contains(Role.ROLE_XDIDIAN_ADMIN.toString())||
+				getAuthorities().contains(Role.ROLE_XDIDIAN_SERVICE.toString());
 	}
 }
