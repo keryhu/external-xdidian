@@ -50,7 +50,7 @@ public final class StringValidate {
 		return Optional.ofNullable(phone).map(e->{		
 			//目前的手机号均为13，14，15，17，18开头的11位数字
 			//严格格式为11位数字
-					String regex="^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$";
+					String regex="^(13[0-9]|15[012356789]|17[0135678]|18[0-9]|14[579])[0-9]{8}$";
 					Pattern p=Pattern.compile(regex);
 					Matcher m=p.matcher(e);	
 					return m.matches();  //m.matches() 表示是否匹配，返回boolean
