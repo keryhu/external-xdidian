@@ -24,6 +24,9 @@ public  final class Constants {
     //定义用户名字，修改的间隔时间，至少60天，也就是限制了用户不能随意的修改名字。
     public static final int INTERVAL_DAYS_OF_NAME_MODIFICATION=60;
     
+    // 用在用户email没有激活，就登录的时候，如果之前的激活码未过期，则出现此标示
+    public static final String TOKEN_EXPIRED = "tokenExpired";
+    
 
 
 }
